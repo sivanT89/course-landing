@@ -40,24 +40,43 @@
     .announce-bar {
       position:fixed; top:0; left:0; right:0; z-index:101;
       height:36px; display:flex; align-items:center; justify-content:center;
-      background:#e63946;
-      gap:10px;
+      background:linear-gradient(90deg,#b71c1c,#e63946 50%,#b71c1c);
+      gap:10px; overflow:hidden;
+      box-shadow:0 2px 14px rgba(230,57,70,0.35);
     }
-    .announce-bar a { text-decoration:none; display:flex; align-items:center; gap:10px; }
+    .announce-bar::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(110deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%);
+      background-size:220% 100%;
+      animation:annShine 4s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes annShine { from{background-position:220% 0;} to{background-position:-220% 0;} }
+    .announce-bar a { text-decoration:none; display:flex; align-items:center; gap:10px; position:relative; z-index:1; }
     .announce-text {
       font-size:0.8rem; font-weight:700; color:#fff;
       letter-spacing:0.01em;
     }
     .announce-timer {
       font-family:'IBM Plex Mono',monospace;
-      font-size:0.78rem; font-weight:800; color:#fff;
-      background:rgba(0,0,0,0.2); border-radius:4px;
-      padding:2px 8px;
+      font-size:0.78rem; font-weight:800;
+      color:#b71c1c; background:#fff;
+      border-radius:5px; padding:2px 9px;
     }
     .announce-cta {
-      font-size:0.72rem; font-weight:800; color:#fff;
-      background:rgba(0,0,0,0.2); border-radius:4px;
-      padding:3px 10px; white-space:nowrap;
+      font-size:0.72rem; font-weight:800; color:#000;
+      background:var(--gold); border-radius:5px;
+      padding:3px 12px; white-space:nowrap;
+      transition:background-color 0.2s;
+    }
+    .announce-bar a:hover .announce-cta { background:var(--gold-hover); }
+    @media(max-width:640px){
+      .announce-bar { gap:6px; padding:0 8px; }
+      .announce-bar a { gap:6px; }
+      .announce-price { display:none; }
+      .announce-text { font-size:0.74rem; white-space:nowrap; }
+      .announce-timer { font-size:0.7rem; padding:2px 6px; }
+      .announce-cta { font-size:0.68rem; padding:2px 8px; }
     }
 
     /* ── NAV ── */
@@ -784,9 +803,8 @@
       .hstat { padding:12px 8px; }
       .hstat .n { font-size:1.3rem; }
       .btn-main,.btn-ghost { padding:14px 20px; height:46px; font-size:0.88rem; }
-      .announce-text:first-child { display:none; }
-      .announce-bar { gap:6px; }
-      .announce-cta { font-size:0.65rem; padding:2px 7px; }
+      .announce-text { font-size:0.68rem; }
+      .announce-cta { font-size:0.62rem; padding:2px 6px; }
     }
   </style>
 </head>
@@ -795,7 +813,7 @@
 <!-- ══ ANNOUNCEMENT BAR ══ -->
 <div class="announce-bar">
   <a href="#pricing">
-    <span class="announce-text">הרשמה מוקדמת: 2,000 ₪ במקום 2,500 ₪ · מסתיימת בעוד</span>
+    <span class="announce-text">הרשמה מוקדמת<span class="announce-price">: 2,000 ₪ במקום 2,500 ₪ ·</span> מסתיימת בעוד</span>
     <span class="announce-timer" id="announceCountdown">--</span>
     <span class="announce-cta">להצטרפות ←</span>
   </a>
