@@ -1,0 +1,16 @@
+# סודות — לא להעלות בשום מצב
+docs-token.json
+
+# תלויות
+node_modules/
+
+# סרטוני מקור כבדים (מעל מגבלת GitHub) — נשארים רק מקומית
+videos/originals/
+videos/broll-full.mp4
+
+# קבצים פנימיים — לא חלק מהעמוד הפומבי
+תסריט-דף-נחיתה.html
+write-to-docs.js
+package.json
+package-lock.json
+images/2026-*.png
