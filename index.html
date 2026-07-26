@@ -229,6 +229,11 @@
       font-size:1rem; color:var(--text-muted);
       line-height:1.8; max-width:580px; margin:0 auto;
     }
+    .vs-punch {
+      font-family:'Suez One','Frank Ruhl Libre',serif;
+      font-size:clamp(1.1rem,2vw,1.4rem);
+      color:var(--gold); margin-top:28px;
+    }
     @media(max-width:480px){
       .dots-visual { display:none; }
       .value-statement { padding:60px 0; }
@@ -1348,6 +1353,7 @@
       <p class="vs-sub">
         שלושה מאמנים שעושים את זה כל יום. בלי תיאוריה ריקה — רק ידע מהשטח וכלים שתשתמשו בהם מהיום שאחרי.
       </p>
+      <p class="vs-punch">אם יש קורס אחד שאתם צריכים בתור מאמנים — זה הקורס הזה.</p>
     </div>
   </div>
 </section>
@@ -1489,7 +1495,7 @@
 
 <script>
   // ── Text Rotate ──
-  const rotateTexts = ['מביאים תוצאות','יודעים לתכנת','בונים תוכניות','מבינים טכניקה','עושים הבדל','לא מנחשים'];
+  const rotateTexts = ['מביאים תוצאות','מתכננים נכון','בונים תוכניות','מבינים טכניקה','עושים הבדל','לא מנחשים'];
   let rotateIndex = 0;
   const rotateEl = document.getElementById('rotateText');
   function rotateNext() {
