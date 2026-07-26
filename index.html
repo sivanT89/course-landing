@@ -96,6 +96,11 @@
         radial-gradient(900px 900px at calc(100% + 150px) calc(100% + 80px), rgba(61,90,255,0.35) 0%, transparent 75%);
     }
 
+    .hero-bg-video {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; opacity:0.16; z-index:0;
+      pointer-events:none; filter:saturate(0.75);
+    }
     .hero-content { position:relative; z-index:2; max-width:720px; margin:0 auto; }
 
     .hero-badge {
@@ -615,33 +620,6 @@
 
     /* ── TESTIMONIALS ── */
     .testimonials { padding:80px 0; background:#0c0c0c; }
-    .moments { padding:80px 0; background:#000; }
-    @media(max-width:768px){ .moments { padding:48px 0; } }
-    .testi-broll { max-width:400px; margin:0 auto; }
-    .testi-broll video {
-      width:100%; display:block; border-radius:16px;
-      border:1px solid rgba(62,62,62,0.5); background:var(--card);
-    }
-    .broll-seek {
-      display:block; width:100%; margin-top:12px;
-      appearance:none; -webkit-appearance:none;
-      height:4px; border-radius:2px;
-      background:rgba(255,255,255,0.15);
-      cursor:pointer; direction:ltr;
-    }
-    .broll-seek::-webkit-slider-thumb {
-      -webkit-appearance:none; width:14px; height:14px; border-radius:50%;
-      background:var(--gold); border:none; cursor:pointer;
-    }
-    .broll-seek::-moz-range-thumb {
-      width:14px; height:14px; border-radius:50%;
-      background:var(--gold); border:none; cursor:pointer;
-    }
-    .testi-broll-caption {
-      text-align:center; margin-top:10px;
-      font-family:'IBM Plex Mono',monospace;
-      font-size:0.7rem; letter-spacing:0.12em; color:var(--text-muted);
-    }
     .testi-videos {
       display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
       max-width:880px; margin:0 auto 44px;
@@ -833,6 +811,7 @@
 
 <!-- ══ HERO ══ -->
 <section class="hero">
+  <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" src="videos/broll.mp4" aria-hidden="true"></video>
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge">
@@ -887,23 +866,6 @@
       <p class="vs-sub">
         לא עוד תיאוריה. שיטה סדורה, קבצי עבודה אמיתיים ותרגול בחדר הכושר — משלושה מאמנים שעובדים עם לקוחות כל יום.
       </p>
-    </div>
-  </div>
-</section>
-
-<hr class="section-line"/>
-
-<!-- ══ MOMENTS ══ -->
-<section class="moments">
-  <div class="container">
-    <div class="section-head center fi-anim">
-      <div class="section-tag">מהשטח</div>
-      <h2 class="sh2">רגעים מתוך המחזור הקודם</h2>
-    </div>
-    <div class="testi-broll fi-anim">
-      <video id="brollVideo" autoplay muted loop playsinline preload="metadata" src="videos/broll.mp4"></video>
-      <input type="range" id="brollSeek" class="broll-seek" min="0" max="100" step="0.1" value="0" aria-label="דילוג בסרטון"/>
-      <div class="testi-broll-caption">מתוך היום המעשי בחדר הכושר · שאר המפגשים מתקיימים בזום ומוקלטים</div>
     </div>
   </div>
 </section>
@@ -1187,7 +1149,7 @@
   </div>
 </section>
 
-<hr class="section-line"/>
+<hr class="section-line" style="display:none"/>
 
 <!-- ══ PODCAST ══ -->
 <!--
@@ -1198,7 +1160,8 @@
   4. עדכן את data-title לכותרת הפרק
   5. עדכן את data-href לקישור המלא
 -->
-<section class="podcast">
+<!-- הפודקאסט מוסתר לפי פידבק הצוות — להחזרה: להסיר את style="display:none" משתי השורות -->
+<section class="podcast" style="display:none">
   <div class="container">
     <div class="section-head center fi-anim">
       <div class="section-tag">פודקאסט</div>
@@ -1485,18 +1448,7 @@
     tick(); setInterval(tick,60000);
   })();
 
-  // ── B-roll Seek Slider ──
-  (function(){
-    const v = document.getElementById('brollVideo');
-    const s = document.getElementById('brollSeek');
-    if (!v || !s) return;
-    v.addEventListener('timeupdate', () => {
-      if (v.duration) s.value = (v.currentTime / v.duration) * 100;
-    });
-    s.addEventListener('input', () => {
-      if (v.duration) v.currentTime = (s.value / 100) * v.duration;
-    });
-  })();
+  // ── B-roll Seek Slider ── (הוסר — הסרטון עבר לרקע ההירו)
 
   // ── Podcast Carousel ──
   const carousel = document.getElementById('podcastCarousel');
